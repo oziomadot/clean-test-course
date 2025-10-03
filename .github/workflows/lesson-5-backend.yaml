@@ -5,12 +5,23 @@ on:
     branches:
       - lesson-5
 jobs:
+  security_test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    name: Excute the PyCharm security test
+    steps:
+      - uses: actions/checkout@v4
+      - name: PyCharm Python Security Scanner
+        uses: tonybaloney/pycharm-security@1.25.1
+
   build_and_test:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: backend
-    steps:
+      steps:
       - uses: actions/checkout@v4
       - name: Set up Python 3.10
         uses: actions/setup-python@v5
